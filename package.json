@@ -1,0 +1,22 @@
+{
+  "name": "data-vault",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savanirajdeep/Data-Vault.git"
+  },
+  "author": "rajdeep,shubham,kishan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/savanirajdeep/Data-Vault/issues"
+  },
+  "homepage": "https://github.com/savanirajdeep/Data-Vault#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
