@@ -5,66 +5,224 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Dashboard</title>
+    <script>
+        let count=0;
+        // count->1 start
+        // count->2 password 
+        // count->3 image 
+        // count->4 video 
+        // count->5 document 
+
+        function upload() {
+            let data = document.getElementById("file").files[0];
+            let entry = document.getElementById("file").files[0];
+            console.log('doupload',entry,data)
+            fetch('uploads/' + encodeURIComponent(entry.name),{ method: 'PUT',body: data });
+            // alert('your file has been uploaded  '+ entry.name);  
+            swal("Good job!","File Uploaded!","success");
+            // location.reload();
+        };
+        function start() {
+            document.getElementById("container").innerHTML = "";
+            let data = [{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" }];
+            let html = "";
+            let v = "";
+            data.forEach((value) => {
+                v +=
+                    "<main >" +
+                    "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
+                    "<div class=\"px-6 py-4\">" +
+                    "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
+                    "<p class=\"text-gray-700 text-base\">" +
+                    " Email :" + value.Email +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</main>";
+            })
+            document.getElementById("container").innerHTML = v;
+            count =1;
+            alert('Count :' +count);
+        }
+
+        function passwordfun() {
+            document.getElementById("container").innerHTML = "";
+            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
+            let html = "";
+            let pass = "";
+            data.forEach((value) => {
+                pass +=
+                    "<main>" +
+                    "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
+                    "<div class=\"px-6 py-4\">" +
+                    "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
+                    "<p class=\"text-gray-700 text-base\">" +
+                    " Password :" + value.Password +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</main>";
+            })
+            document.getElementById("container").innerHTML = pass;
+            count = 2;
+            alert('Count :' +count);
+        }
+        function imagefun() {
+            document.getElementById("container").innerHTML = "";
+            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
+            let html = "";
+            let img = "";
+            data.forEach((value) => {
+                img +=
+                    "<main>" +
+                    "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" + value.img +
+                    "<div class=\"px-6 py-4\">" +
+                    "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
+                    "<p class=\"text-gray-700 text-base\">" +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</main>";
+            })
+            document.getElementById("container").innerHTML = img;
+            count = 3;
+            alert('Count :' +count);
+        }
+        function videofun() {
+            document.getElementById("container").innerHTML = "";
+            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
+            let html = "";
+            let video = "";
+            data.forEach((value) => {
+                video +=
+                    "<main>" +
+                    "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
+                    "<div class=\"px-6 py-4\">" +
+                    "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
+                    "<p class=\"text-gray-700 text-base\">" +
+                    " Video :" + value.video +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</main>";
+            })
+            document.getElementById("container").innerHTML = video;
+            count = 4;
+            alert('Count :' +count);
+        }
+        function documentfun() {
+            document.getElementById("container").innerHTML = "";
+            let data = [{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" }];
+            let html = "";
+            let doc = "";
+            data.forEach((value) => {
+                doc +=
+                    "<main>" +
+                    "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
+                    "<div class=\"px-6 py-4\">" +
+                    "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
+                    "<p class=\"text-gray-700 text-base\">" +
+                    " Document :" + value.Document +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</main>";
+            })
+            document.getElementById("container").innerHTML = doc;
+            count = 5;
+            alert('Count :' +count);
+        }
+    </script>
 </head>
 
-<body>
-    <div class="min-h-full">
+<body onload="start()">
+    <div class="min-h-full ">
         <header class="bg-white shadow">
-            <div class="max-w-9xl mx-auto py-5 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-9xl gap-x-96 mx-auto py-5 px-4 sm:px-6 lg:px-8"
+                style="display: flex; flex-direction: row;">
                 <h1 class="text-3xl font-bold text-gray-900">
                     Dashboard
                 </h1>
+                <div class="pl-96 place-items-end md:place-items-end">
+                    <input class="fas fa-cloud-upload-alt" type="file" name="file" id="file">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                    onclick="upload()">
+                        Upload
+                    </button>
+                </div>
             </div>
+
+            <!-- <div class="max-w-9xl mx-auto py-5 px-4 sm:px-6 lg:px-8 bg-grey">hello</div> -->
         </header>
-        <main>
-            <div class="max-w-7xl mx-auto py-0 pb-0 sm:px-6 lg:px-8">
-                <!-- Replace with your content -->
-                <!-- <div class="px-4 py-6 sm:px-0">
-              <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
-            </div> -->
-                <!-- /End replace -->
-            </div>
-        </main>
     </div>
+    <!-- <main>
+        <div class="mx-auto py-0 pb-0 sm:px-6 lg:px-8">
+            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains">
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+                  <p class="text-gray-700 text-base">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                  </p>
+                </div>
+            </div>
+   </main>  -->
+    <div style="display: flex; flex-direction: row;">
 
-    <div id="Main"
-        class="xl:rounded-r transform  xl:translate-x-0 flex items-start h-full   w-full sm:w-64 bg-gray-900 flex-col">
-        <img class="rounded-full center pt-20  pl-5 w-4/5 h-4/5" src="https://i.ibb.co/L1LQtBm/Ellipse-1.png" alt="avatar" />
+        <div id="Main"
+            class="xl:rounded-r transform  xl:translate-x-0 flex items-start h-full   w-full sm:w-64 bg-gray-900 flex-col">
+            <img class="rounded-full center pt-20  pl-5 w-4/5 h-4/5" src="https://i.ibb.co/L1LQtBm/Ellipse-1.png"
+                alt="avatar" />
 
-        <div class="flex justify-center items-center pt-6 space-x-2">
-            <p class="text-lg leading-5 text-white">Alexis Enache</p>
-        </div>
-        <div class="flex flex-col justify-start items-center px-6 border-b border-gray-600 w-full ">
-            <div id="menu1" class="flex justify-start  flex-col w-full md:w-full items-start pb-28 py-11 h-full">
-                <button
-                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
-                    <p class="text-base leading-4  ">Passwords</p>
-                </button>
-                <button
-                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
-                    <p class="text-base leading-4  ">Images</p>
-                </button>
-                <button
-                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52">
-                    <p class="text-base leading-4  ">Videos</p>
-                </button>
-                <button
-                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
-                    <p class="text-base leading-4  ">Documents</p>
-                </button>
-                <button
-                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
-                    <p class="text-base leading-4  ">Passwords</p>
-                </button>
-                <button
-                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
-                    <p class="text-base leading-4  ">Log out</p>
-                </button>
+            <div class="flex justify-center items-center pt-6 space-x-2">
+                <p class="text-lg leading-5 text-white">Alexis Enache</p>
+            </div>
+            <div class="flex flex-col justify-start items-center px-6 border-b border-gray-600 w-full ">
+                <div class="flex justify-start  flex-col w-full md:w-full items-start pb-28 py-11 h-full">
+                    <button
+                        class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52"
+                        onclick="passwordfun()" id="password">
+                        <p class="text-base leading-4  ">Passwords</p>
+                    </button>
+                    <button
+                        class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52"
+                        onclick="imagefun()">
+                        <p class="text-base leading-4  ">Images</p>
+                    </button>
+                    <button
+                        class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
+                        onclick="videofun()">
+                        <p class="text-base leading-4  ">Videos</p>
+                    </button>
+                    <button
+                        class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52"
+                        onclick="documentfun()">
+                        <p class="text-base leading-4  ">Documents</p>
+                    </button>
+                    <button
+                        class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
+                        <p class="text-base leading-4  ">Log out</p>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+        <div id="container" style="display:flex; flex-wrap: wrap;">
+
+        </div>
     </div>
 </body>
+
 </html>
