@@ -8,24 +8,51 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Dashboard</title>
-    <script>
-        let count=0;
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
+        $("form").submit(function(evt){	 
+            evt.preventDefault();
+                var formData = new FormData($(this)[0]);
+                $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: formData,
+            processData: false,  
+            contentType: false,  
+                enctype: 'multipart/form-data',
+                success: function (response) {
+                    alert(response);
+                },
+                error: function (response) {
+                    alert(response);
+                }
+                });
+                
+                return false;
+            });
+        });
+        let count = 0;
         // count->1 start
         // count->2 password 
         // count->3 image 
         // count->4 video 
         // count->5 document 
 
-        function upload() {
-            let data = document.getElementById("file").files[0];
-            let entry = document.getElementById("file").files[0];
-            console.log('doupload',entry,data)
-            fetch('uploads/' + encodeURIComponent(entry.name),{ method: 'PUT',body: data });
-            // alert('your file has been uploaded  '+ entry.name);  
-            swal("Good job!","File Uploaded!","success");
-            // location.reload();
-        };
+
+        //password 
+        // JSON data -> userid, password
+
+        // image 
+        // JSON Data-> img, file name
+
+        // video 
+        // JSON Data-> video, file name
+
+        // document 
+        // JSON Data-> document, file name
         function start() {
+            count = 1;
             document.getElementById("container").innerHTML = "";
             let data = [{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" }];
             let html = "";
@@ -37,7 +64,7 @@
                     "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
                     "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
                     "<div class=\"px-6 py-4\">" +
-                    "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
+                    "<div class=\"font-bold text-xl mb-2\" id=\"emailvalue\">The Coldest Sunset</div>" +
                     "<p class=\"text-gray-700 text-base\">" +
                     " Email :" + value.Email +
                     "</p>" +
@@ -46,37 +73,47 @@
                     "</main>";
             })
             document.getElementById("container").innerHTML = v;
-            count =1;
-            alert('Count :' +count);
+
+            // alert('Count :' + count);
         }
 
         function passwordfun() {
+            count = 2;
             document.getElementById("container").innerHTML = "";
-            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
             let html = "";
             let pass = "";
-            data.forEach((value) => {
+            $.ajax({
+                url: "/password/getAllPasswords",
+                type: 'GET',
+                success: function (res) {
+                    res.forEach((value) => {
                 pass +=
                     "<main>" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
                     "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
-                    "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
+                    "<img class=\"w-full\" src=\"/img/card-top.jpg\" id=\"image\" alt=\"Sunset in the mountains\">" +
                     "<div class=\"px-6 py-4\">" +
-                    "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
+                    "<div class=\"font-bold text-xl mb-2\">"+ value.email +"</div>" +
                     "<p class=\"text-gray-700 text-base\">" +
-                    " Password :" + value.Password +
+                    " Password :" + value.password +
                     "</p>" +
                     "</div>" +
                     "</div>" +
                     "</main>";
             })
             document.getElementById("container").innerHTML = pass;
-            count = 2;
-            alert('Count :' +count);
+                }
+            });
+            
+
+
+
         }
         function imagefun() {
             document.getElementById("container").innerHTML = "";
-            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
+            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{
+                "Password": "shubham"
+            },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
             let html = "";
             let img = "";
             data.forEach((value) => {
@@ -95,11 +132,13 @@
             })
             document.getElementById("container").innerHTML = img;
             count = 3;
-            alert('Count :' +count);
+            // alert('Count :' + count);
         }
         function videofun() {
             document.getElementById("container").innerHTML = "";
-            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
+            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{
+                "Password": "shubham"
+            },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
             let html = "";
             let video = "";
             data.forEach((value) => {
@@ -119,11 +158,17 @@
             })
             document.getElementById("container").innerHTML = video;
             count = 4;
-            alert('Count :' +count);
+            alert('Count :' + count);
         }
         function documentfun() {
             document.getElementById("container").innerHTML = "";
-            let data = [{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" }];
+            let data = [{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{
+                "Document":
+                    "19bct0092"
+            },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{
+                "Document":
+                    "19bct0092"
+            },{ "Document": "19bct0092" }];
             let html = "";
             let doc = "";
             data.forEach((value) => {
@@ -143,7 +188,7 @@
             })
             document.getElementById("container").innerHTML = doc;
             count = 5;
-            alert('Count :' +count);
+            alert('Count :' + count);
         }
     </script>
 </head>
@@ -159,7 +204,7 @@
                 <div class="pl-96 place-items-end md:place-items-end">
                     <input class="fas fa-cloud-upload-alt" type="file" name="file" id="file">
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-                    onclick="upload()">
+                        onclick="upload()">
                         Upload
                     </button>
                 </div>
