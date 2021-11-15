@@ -9,7 +9,34 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Dashboard</title>
+<<<<<<< HEAD
     <script>
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
+        $("form").submit(function(evt){	 
+            evt.preventDefault();
+                var formData = new FormData($(this)[0]);
+                $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: formData,
+            processData: false,  
+            contentType: false,  
+                enctype: 'multipart/form-data',
+                success: function (response) {
+                    alert(response);
+                },
+                error: function (response) {
+                    alert(response);
+                }
+                });
+                
+                return false;
+            });
+        });
+>>>>>>> bf48fb3b6cdf1a2da75de9a625a88aec0ef29e4e
         let count = 0;
         // count->1 start
         // count->2 password 
@@ -39,7 +66,22 @@
             });
         });
 
+<<<<<<< HEAD
         var xhttp;
+=======
+
+        //password 
+        // JSON data -> userid, password
+
+        // image 
+        // JSON Data-> img, file name
+
+        // video 
+        // JSON Data-> video, file name
+
+        // document 
+        // JSON Data-> document, file name
+>>>>>>> bf48fb3b6cdf1a2da75de9a625a88aec0ef29e4e
         function start() {
             count = 1;
             document.getElementById("container").innerHTML = "";
@@ -67,6 +109,7 @@
         }
 
         function passwordfun() {
+<<<<<<< HEAD
             alert("strt");
             count = 2;
             document.getElementById("container").innerHTML = "";
@@ -75,6 +118,12 @@
             let pass = "";
             let pass = "";
             
+=======
+            count = 2;
+            document.getElementById("container").innerHTML = "";
+            let html = "";
+            let pass = "";
+>>>>>>> bf48fb3b6cdf1a2da75de9a625a88aec0ef29e4e
             pass+="<div class=\"flex flex-row\">"+
             "<div class=\"w-full md:w-full px-3\">"+
                 "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"Website\">"+
@@ -108,6 +157,7 @@
                     "</button>"+
             "</div>"+
         "</div>"+
+<<<<<<< HEAD
         "<table class=\"table\" id=\"table\">" + "</table>";    
             // $.ajax({
             //     url: "/#",
@@ -134,6 +184,34 @@
             // });
             
             document.getElementById("container").innerHTML = pass;
+=======
+        "<table class=\"table\" id=\"table\">" + "</table>";
+        alert('fin');
+
+            $.ajax({
+                url: "/password/getAllPasswords",
+                type: 'GET',
+                success: function (res) {
+                    res.forEach((value) => {
+                pass +=
+                    "<main>" +
+                    "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<div class=\"px-6 py-4\">" +
+                    "<div class=\"font-bold text-xl mb-2\">"+"Email :"+ value.email +"</div>" +
+                    "<p class=\"font-bold text-xl mb-2\">" +
+                    " Password :" + value.password +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</main>";
+            })
+            document.getElementById("container").innerHTML = pass;
+                }
+            });
+            
+
+>>>>>>> bf48fb3b6cdf1a2da75de9a625a88aec0ef29e4e
 
 
         }
@@ -160,7 +238,10 @@
                     "</main>";
             })
             document.getElementById("container").innerHTML = img;
+<<<<<<< HEAD
             
+=======
+>>>>>>> bf48fb3b6cdf1a2da75de9a625a88aec0ef29e4e
         }
         function videofun() {
             count = 4;
@@ -219,9 +300,15 @@
     </script>
 </head>
 
+<<<<<<< HEAD
 <body onload="start()" style="background-color: #E5E7EB;">
     <div class="min-h-full ">
         <header class="shadow" style="background-color: #9CA3AF;">
+=======
+<body onload="start()"  style="background-color: #E5E7EB;">
+    <div class="min-h-full ">
+        <header class="bg-white shadow" style="background-color: #9CA3AF;">
+>>>>>>> bf48fb3b6cdf1a2da75de9a625a88aec0ef29e4e
             <div class="max-w-9xl gap-x-96 mx-auto py-5 px-4 sm:px-6 lg:px-8"
                 style="display: flex; flex-direction: row;">
                 <h1 class="text-3xl font-bold text-gray-900">
@@ -254,7 +341,11 @@
     <div style="display: flex; flex-direction: row;">
 
         <div id="Main"
+<<<<<<< HEAD
             class="xl:rounded-r transform  xl:translate-x-0 flex items-start h-full   w-full sm:w-64 flex-col" style="background-color: #4B5563;">
+=======
+            class="xl:rounded-r transform  xl:translate-x-0 flex items-start h-full   w-full sm:w-64 flex-col" style="background-color: #4B5563;"> 
+>>>>>>> bf48fb3b6cdf1a2da75de9a625a88aec0ef29e4e
             <img class="rounded-full center pt-20  pl-5 w-4/5 h-4/5" src="https://i.ibb.co/L1LQtBm/Ellipse-1.png"
                 alt="avatar" />
 
