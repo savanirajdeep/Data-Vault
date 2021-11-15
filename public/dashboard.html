@@ -7,25 +7,41 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Dashboard</title>
     <script>
-        let count=0;
+        let count = 0;
         // count->1 start
         // count->2 password 
         // count->3 image 
         // count->4 video 
         // count->5 document 
+        $(document).ready(function(){
+        $("form").submit(function(evt){	 
+            evt.preventDefault();
+                var formData = new FormData($(this)[0]);
+                $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: formData,
+            processData: false,  
+            contentType: false,  
+                enctype: 'multipart/form-data',
+                success: function (response) {
+                    alert(response);
+                },
+                error: function (response) {
+                    alert(response);
+                }
+                });
+                
+                return false;
+            });
+        });
 
-        function upload() {
-            let data = document.getElementById("file").files[0];
-            let entry = document.getElementById("file").files[0];
-            console.log('doupload',entry,data)
-            fetch('uploads/' + encodeURIComponent(entry.name),{ method: 'PUT',body: data });
-            // alert('your file has been uploaded  '+ entry.name);  
-            swal("Good job!","File Uploaded!","success");
-            // location.reload();
-        };
+        var xhttp;
         function start() {
+            count = 1;
             document.getElementById("container").innerHTML = "";
             let data = [{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" }];
             let html = "";
@@ -34,10 +50,10 @@
                 v +=
                     "<main >" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\"style=\"background: #F3F4F6\">" +
                     "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
                     "<div class=\"px-6 py-4\">" +
-                    "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
+                    "<div class=\"font-bold text-xl mb-2\" id=\"emailvalue\">The Coldest Sunset</div>" +
                     "<p class=\"text-gray-700 text-base\">" +
                     " Email :" + value.Email +
                     "</p>" +
@@ -46,44 +62,94 @@
                     "</main>";
             })
             document.getElementById("container").innerHTML = v;
-            count =1;
-            alert('Count :' +count);
+
+            // alert('Count :' + count);
         }
 
         function passwordfun() {
+            alert("strt");
+            count = 2;
             document.getElementById("container").innerHTML = "";
-            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
+            // let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
             let html = "";
             let pass = "";
-            data.forEach((value) => {
-                pass +=
-                    "<main>" +
-                    "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
-                    "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
-                    "<div class=\"px-6 py-4\">" +
-                    "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
-                    "<p class=\"text-gray-700 text-base\">" +
-                    " Password :" + value.Password +
-                    "</p>" +
-                    "</div>" +
-                    "</div>" +
-                    "</main>";
-            })
+            let pass = "";
+            
+            pass+="<div class=\"flex flex-row\">"+
+            "<div class=\"w-full md:w-full px-3\">"+
+                "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"Website\">"+
+                    "Web site"+
+                "</label>"+
+                "<input"+
+                    "class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white\""+
+                    "id=\"website\" type=\"text\" placeholder=\"www.google.com\">" +
+            "</div>"+
+            "<div class=\"w-full md:w-full px-3\">"+
+                "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"userId\">"+
+                    "User ID"+
+                "</label>"+
+                "<input"+
+                    "class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500\""+
+                    "id=\"userid\" type=\"text\" placeholder=\"data vault\">"+
+            "</div>"+
+            "<div class=\"w-full md:w-full px-3\">"+
+                "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"password\">"+
+                    "Password"+
+                "</label>"+
+                "<input"+
+                    "class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white\""+
+                    "id=\"password\" type=\"password\" placeholder=\"Jane\">"+
+            "</div>"+
+            "<div class=\"w-full md:w-full py-5 pl-7\">"+
+                "<label for=\"nothing\" class=\"\"></label>"+
+                "<button style =\"background-color: #1F2937;\" class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full\""+
+                        "onclick=\"addData()\">"+
+                        "Add"+
+                    "</button>"+
+            "</div>"+
+        "</div>"+
+        "<table class=\"table\" id=\"table\">" + "</table>";    
+            // $.ajax({
+            //     url: "/#",
+            //     type: 'GET',
+            //     success: function (res) {
+            //         data=JSON.parse(res);
+            //         data.forEach((value) => {
+            //     pass +=
+            //         "<main>" +
+            //         "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
+            //         "<div class=\"max-w-sm bg-white rounded overflow-hidden shadow-lg\" style=\"background: #F3F4F6\">" +
+            //         "<img class=\"w-full\" src=\"/img/card-top.jpg\" id=\"image\" alt=\"Sunset in the mountains\">" +
+            //         "<div class=\"px-6 py-4\">" +
+            //         "<div class=\"font-bold text-xl mb-2\">"+ data.Password +"</div>" +
+            //         "<p class=\"text-gray-700 text-base\">" +
+            //         " Password :" + value.Password +
+            //         "</p>" +
+            //         "</div>" +
+            //         "</div>" +
+            //         "</main>";
+            // })
+            // document.getElementById("container").innerHTML = pass;
+            //     }
+            // });
+            
             document.getElementById("container").innerHTML = pass;
-            count = 2;
-            alert('Count :' +count);
+
+
         }
         function imagefun() {
+            count = 3;
             document.getElementById("container").innerHTML = "";
-            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
+            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{
+                "Password": "shubham"
+            },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
             let html = "";
             let img = "";
             data.forEach((value) => {
                 img +=
                     "<main>" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<div class=\"max-w-sm bg-white rounded overflow-hidden shadow-lg\" style=\"background: #F3F4F6\">" +
                     "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" + value.img +
                     "<div class=\"px-6 py-4\">" +
                     "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
@@ -94,19 +160,21 @@
                     "</main>";
             })
             document.getElementById("container").innerHTML = img;
-            count = 3;
-            alert('Count :' +count);
+            
         }
         function videofun() {
+            count = 4;
             document.getElementById("container").innerHTML = "";
-            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
+            let data = [{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{
+                "Password": "shubham"
+            },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" },{ "Password": "shubham" }];
             let html = "";
             let video = "";
             data.forEach((value) => {
                 video +=
                     "<main>" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<div class=\"max-w-sm bg-white rounded overflow-hidden shadow-lg\" style=\"background: #F3F4F6\">" +
                     "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
                     "<div class=\"px-6 py-4\">" +
                     "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
@@ -118,19 +186,24 @@
                     "</main>";
             })
             document.getElementById("container").innerHTML = video;
-            count = 4;
-            alert('Count :' +count);
         }
         function documentfun() {
+            count = 5;
             document.getElementById("container").innerHTML = "";
-            let data = [{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" }];
+            let data = [{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{
+                "Document":
+                    "19bct0092"
+            },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{ "Document": "19bct0092" },{
+                "Document":
+                    "19bct0092"
+            },{ "Document": "19bct0092" }];
             let html = "";
             let doc = "";
             data.forEach((value) => {
                 doc +=
                     "<main>" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<div class=\"max-w-sm bg-white rounded overflow-hidden shadow-lg\" style=\"background: #F3F4F6\">" +
                     "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
                     "<div class=\"px-6 py-4\">" +
                     "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
@@ -142,15 +215,13 @@
                     "</main>";
             })
             document.getElementById("container").innerHTML = doc;
-            count = 5;
-            alert('Count :' +count);
         }
     </script>
 </head>
 
-<body onload="start()">
+<body onload="start()" style="background-color: #E5E7EB;">
     <div class="min-h-full ">
-        <header class="bg-white shadow">
+        <header class="shadow" style="background-color: #9CA3AF;">
             <div class="max-w-9xl gap-x-96 mx-auto py-5 px-4 sm:px-6 lg:px-8"
                 style="display: flex; flex-direction: row;">
                 <h1 class="text-3xl font-bold text-gray-900">
@@ -158,8 +229,8 @@
                 </h1>
                 <div class="pl-96 place-items-end md:place-items-end">
                     <input class="fas fa-cloud-upload-alt" type="file" name="file" id="file">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-                    onclick="upload()">
+                    <button style = "background-color: #1F2937;" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                        onclick="upload()">
                         Upload
                     </button>
                 </div>
@@ -183,7 +254,7 @@
     <div style="display: flex; flex-direction: row;">
 
         <div id="Main"
-            class="xl:rounded-r transform  xl:translate-x-0 flex items-start h-full   w-full sm:w-64 bg-gray-900 flex-col">
+            class="xl:rounded-r transform  xl:translate-x-0 flex items-start h-full   w-full sm:w-64 flex-col" style="background-color: #4B5563;">
             <img class="rounded-full center pt-20  pl-5 w-4/5 h-4/5" src="https://i.ibb.co/L1LQtBm/Ellipse-1.png"
                 alt="avatar" />
 
@@ -219,7 +290,7 @@
                 </div>
             </div>
         </div>
-        <div id="container" style="display:flex; flex-wrap: wrap;">
+        <div id="container" style="display:flex; flex-wrap: wrap; background-color: #F9FAFB;">
 
         </div>
     </div>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Document</title>
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var jsonData = '[]';
+            var list;
+            alert("hrkl");
+            var response = '[{"website":"John", "userid":"Doe", "password":"rajd"},{"website":"John", "userid":"Doe", "password":"rajd"},{"website":"John", "userid":"Doe", "password":"rajd"}]';
+            var list;
+            alert("hello");
+            var trHTML = '';
+                    trHTML += '<tr><th>Website </th><th>UserId </th><th>Password </th></tr>';
+                    response.forEach(list,function(item)){
+                        alert("ineach");
+                        trHTML += '<tr><td>' + item.website + '</td><td>' + item.userid + '</td><td>' + item.password + '</td></tr>';
+                    };
+                    // $.each(response, function (i, item) {
+                    //     trHTML += '<tr><td>' + item.website + '</td><td>' + item.userid + '</td><td>' + item.password + '</td></tr>';
+                    // }); 
+                    alert(item.website);
+                    // document.getElementById('container').append(trHTML);
+                    // $('#container').append(trHTML);
+        });
+        // $(document).ready(function () {
+        //     var response = '[{"website":"John", "userid":"Doe", "password":"rajd"},{"website":"John", "userid":"Doe", "password":"rajd"},{"website":"John", "userid":"Doe", "password":"rajd"}]';
+        //     var list;
+        //     ('#container').html('');
+        //     alert("hello");
+        //     var trHTML = '';
+        //             trHTML += '<tr><th>Website </th><th>UserId </th><th>Password </th></tr>';
+                    
+        //             $.each(response, function (i, item) {
+        //                 trHTML += '<tr><td>' + item.website + '</td><td>' + item.userid + '</td><td>' + item.password + '</td></tr>';
+        //             }); 
+        //             $('#container').append(trHTML);
+        //     // $.ajax({
+        //     //     url: '#',
+        //     //     type: 'GET',
+        //     //     data: {
+        //     //         json: jsonData
+        //     //     },
+        //     //     success: function (response) {
+        //     //         list = response;
+        //     //         var trHTML = '';
+        //     //         $('#container').html('');
+        //     //         trHTML += '<tr><th>Website </th><th>UserId </th><th>Password </th></tr>';
+        //     //         $.each(response, function (i, item) {
+        //     //             trHTML += '<tr><td>' + item.website + '</td><td>' + item.userid + '</td><td>' + item.password + '</td></tr>';
+        //     //         }); 
+        //     //         $('#container').append(trHTML);
+        //     //     }
+        //     // });
+        // });
+    </script>
+</head>
+<body>
+    <table class="table" id="container">
+        
+    </table>
+</body>
+</html>
