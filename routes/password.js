@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const auth = require("../middleware/auth");
 const Password = require("../model/passwords");
 
 /**
@@ -10,11 +10,13 @@ const Password = require("../model/passwords");
  */
 
 router.post(
-  "/store",
+  "/store",auth,
   async (req, res) => {
     
     const { email, website, password } = req.body;
+    const userId=req.user.id;
     passwordSave = new Password({
+        userId,
         website,
         email,
         password
@@ -22,7 +24,7 @@ router.post(
         await passwordSave.save((err,result)=>{
           if (err){
             return res.status(400).json({
-              message: "Something went wrong"
+              message: "Something went wrong" + err
             });
           }
           else{
@@ -35,10 +37,9 @@ router.post(
       
 
 router.get(
-  "/getAllPasswords",
+  "/getAllPasswords",auth,
   async (req, res) => {
 
-    const { email, password } = req.body;
       let passwordList = await Password.find();
       if (!passwordList)
         return res.status(400).json({
@@ -48,5 +49,19 @@ router.get(
 
   }
 );
+// router.post(
+//   "/getAllPasswords",
+//   async (req, res) => {
+
+//     const { email, password } = req.body;
+//       let passwordList = await Password.find();
+//       if (!passwordList)
+//         return res.status(400).json({
+//           message: "Password List Not Exist"
+//         });
+//       return res.status(200).send(passwordList);
+
+//   }
+// );
 
 module.exports = router;
