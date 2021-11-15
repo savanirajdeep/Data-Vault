@@ -36,7 +36,9 @@
           data: data,
           success: function (response) {
             sessionStorage.clear();
-            sessionStorage.setItem('token', CryptoJS.AES.encrypt(response.token.toString(), $("#secret").val()))
+            sessionStorage.setItem('true',response.token.toString());
+            sessionStorage.setItem('token', CryptoJS.AES.encrypt(response.token.toString(), $("#secret").val()).toString())
+            
             redirect('/');
           },
           error: (jqXHR, textStatus, errorThrown) => {

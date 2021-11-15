@@ -37,7 +37,7 @@ router.post(
       
 
 router.get(
-  "/getAllPasswords",
+  "/getAllPasswords",auth,
   async (req, res) => {
 
       let passwordList = await Password.find();

@@ -9,8 +9,41 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+
         <script>
+            
         $(document).ready(function(){
+            function redirect(url) {
+            var ua = navigator.userAgent.toLowerCase(),
+            isIE = ua.indexOf('msie') !== -1,
+            version = parseInt(ua.substr(4, 2), 10); if (isIE && version < 9) {
+                var link = document.createElement('a');
+                link.href = url;
+                document.body.appendChild(link);
+                link.click();
+            } else {
+            window.location.href = url;
+            }
+        }
+        var encryptedToken = sessionStorage.getItem('token');
+        alert(encryptedToken.toString());
+        if(!encryptedToken.toString())
+            alert('nothing');
+        let key = prompt('Enter the secret key\nNote: It should be same as secret key in previous screen!');
+        let bytes = CryptoJS.AES.decrypt(encryptedToken, key);
+        token = bytes.toString(CryptoJS.enc.Utf8);
+        var trueToken=sessionStorage.getItem('true');
+        if(trueToken!=token){
+            alert(trueToken);
+            alert(token);
+        }
+        if(!token.toString()){
+            key = prompt('Please provide correct secret key');
+            token = CryptoJS.AES.decrypt(encryptedToken, key);   
+        }
+        if(!token.toString())
+            redirect('/user/login');
         $("form").submit(function(evt){	 
             evt.preventDefault();
                 var formData = new FormData($(this)[0]);
@@ -51,29 +84,29 @@
 
         // document 
         // JSON Data-> document, file name
-        function start() {
-            count = 1;
-            document.getElementById("container").innerHTML = "";
-            let data = [{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" }];
-            let html = "";
-            let v = "";
-            data.forEach((value) => {
-                v +=
-                    "<main >" +
-                    "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\"style=\"background: #F3F4F6\">" +
-                    "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
-                    "<div class=\"px-6 py-4\">" +
-                    "<div class=\"font-bold text-xl mb-2\" id=\"emailvalue\">The Coldest Sunset</div>" +
-                    "<p class=\"text-gray-700 text-base\">" +
-                    " Email :" + value.Email +
-                    "</p>" +
-                    "</div>" +
-                    "</div>" +
-                    "</main>";
-            })
-            document.getElementById("container").innerHTML = v;
-        }
+        // function start() {
+        //     count = 1;
+        //     document.getElementById("container").innerHTML = "";
+        //     let data = [{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" },{ "Email": "shubham" },{ "Email": "hubham" }];
+        //     let html = "";
+        //     let v = "";
+        //     data.forEach((value) => {
+        //         v +=
+        //             "<main >" +
+        //             "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
+        //             "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\"style=\"background: #F3F4F6\">" +
+        //             "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
+        //             "<div class=\"px-6 py-4\">" +
+        //             "<div class=\"font-bold text-xl mb-2\" id=\"emailvalue\">The Coldest Sunset</div>" +
+        //             "<p class=\"text-gray-700 text-base\">" +
+        //             " Email :" + value.Email +
+        //             "</p>" +
+        //             "</div>" +
+        //             "</div>" +
+        //             "</main>";
+        //     })
+        //     document.getElementById("container").innerHTML = v;
+        // }
 
         function passwordfun() {
             
@@ -81,46 +114,48 @@
             document.getElementById("container").innerHTML = "";
             let html = "";
             let pass = "";
-            pass+="<div class=\"flex flex-row\">"+
-            "<div class=\"w-full md:w-full px-3\">"+
-                "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"Website\">"+
-                    "Web site"+
-                "</label>"+
-                "<input"+
-                    "class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white\""+
-                    "id=\"website\" type=\"text\" placeholder=\"www.google.com\">" +
-            "</div>"+
-            "<div class=\"w-full md:w-full px-3\">"+
-                "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"userId\">"+
-                    "User ID"+
-                "</label>"+
-                "<input"+
-                    "class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500\""+
-                    "id=\"userid\" type=\"text\" placeholder=\"data vault\">"+
-            "</div>"+
-            "<div class=\"w-full md:w-full px-3\">"+
-                "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"password\">"+
-                    "Password"+
-                "</label>"+
-                "<input"+
-                    "class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white\""+
-                    "id=\"password\" type=\"password\" placeholder=\"Jane\">"+
-            "</div>"+
-            "<div class=\"w-full md:w-full py-5 pl-7\">"+
-                "<label for=\"nothing\" class=\"\"></label>"+
-                "<button style =\"background-color: #1F2937;\" class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full\""+
-                        "onclick=\"addData()\">"+
-                        "Add"+
-                    "</button>"+
-            "</div>"+
-        "</div>"+
-        "<table class=\"table\" id=\"table\">" + "</table>";
-        alert('fin');
-
+        //     pass+="<div class=\"flex flex-row\">"+
+        //     "<div class=\"w-full md:w-full px-3\">"+
+        //         "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"Website\">"+
+        //             "Web site"+
+        //         "</label>"+
+        //         "<input"+
+        //             "class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white\""+
+        //             "id=\"website\" type=\"text\" placeholder=\"www.google.com\">" +
+        //     "</div>"+
+        //     "<div class=\"w-full md:w-full px-3\">"+
+        //         "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"userId\">"+
+        //             "User ID"+
+        //         "</label>"+
+        //         "<input"+
+        //             "class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500\""+
+        //             "id=\"userid\" type=\"text\" placeholder=\"data vault\">"+
+        //     "</div>"+
+        //     "<div class=\"w-full md:w-full px-3\">"+
+        //         "<label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"password\">"+
+        //             "Password"+
+        //         "</label>"+
+        //         "<input"+
+        //             "class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white\""+
+        //             "id=\"password\" type=\"password\" placeholder=\"Jane\">"+
+        //     "</div>"+
+        //     "<div class=\"w-full md:w-full py-5 pl-7\">"+
+        //         "<label for=\"nothing\" class=\"\"></label>"+
+        //         "<button style =\"background-color: #1F2937;\" class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full\""+
+        //                 "onclick=\"addData()\">"+
+        //                 "Add"+
+        //             "</button>"+
+        //     "</div>"+
+        // "</div>"+
+        // "<table class=\"table\" id=\"table\">" + "</table>";
+            // alert(token.toString());
             $.ajax({
                 url: "/password/getAllPasswords",
                 type: 'GET',
-                success: function (res) {
+                headers: {
+                    'token':token.toString()
+                },
+                success: function(res) {
                     res.forEach((value) => {
                 pass +=
                     "<main>" +
@@ -133,16 +168,21 @@
                     "</p>" +
                     "</div>" +
                     "</div>" +
-                    "</main>";
-            })
-            document.getElementById("container").innerHTML = pass;
+                    "</main>"
+                    })
+                document.getElementById("container").innerHTML = pass;
+                },
+                error: (jqXHR, textStatus, errorThrown) => {
+                alert(jqXHR.responseText);
                 }
-            });
+            })
+            
+            };
             
 
 
 
-        }
+        
         function imagefun() {
             count = 3;
             document.getElementById("container").innerHTML = "";
@@ -224,7 +264,7 @@
     </script>
 </head>
 
-<body onload="start()"  style="background-color: #E5E7EB;">
+<body onload="passwordfun()"  style="background-color: #E5E7EB;">
     <div class="min-h-full ">
         <header class="bg-white shadow" style="background-color: #9CA3AF;">
             <div class="max-w-9xl gap-x-96 mx-auto py-5 px-4 sm:px-6 lg:px-8"
