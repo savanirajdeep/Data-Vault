@@ -155,12 +155,39 @@
                 headers: {
                     'token':token.toString()
                 },
-                success: function(res) {
+                success: function (res) {
+                // pass+="<input type=\"text\">Enter name</input>";
+                pass+="<div class=\"flex flex-row\" style=\"width=100%\">"+
+            "<div class=\"w-full md:w-full px-3\">"+
+                "<label class=\"uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"Website\">"+
+                    "Web site"+
+                "</label>"+
+                "<input class=\"appearance-none w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white\" id=\"website\" type=\"text\" placeholder=\"www.google.com\"> </input>" +
+            "</div>"+
+            "<div class=\"w-full md:w-full px-3\">"+
+                "<label class=\"uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"userId\">"+
+                    "User ID"+
+                "</label>"+
+                "<input class=\"appearance-none w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500\" id=\"userid\" type=\"text\" placeholder=\"data vault\"> </input>"+
+            "</div>"+
+            "<div class=\"w-full md:w-full px-3\">"+
+                "<label class=\"uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"password\"> Password"+
+                "</label>"+
+                "<input class=\"appearance-none  w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white\" id=\"password\" type=\"password\" placeholder=\"Jane\">"+
+            "</div>"+
+            "<div class=\"w-full md:w-full py-5 pl-7\">"+
+                "<label for=\"nothing\" class=\"\"></label>"+
+                "<button style =\"background-color: #1F2937;\" class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full\""+
+                        "onclick=\"addData()\">"+
+                        "Add"+
+                    "</button>"+
+            "</div>"+
+        "</div>";
                     res.forEach((value) => {
                 pass +=
                     "<main>" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\" style=\"background : #F3F4F6\">" +
                     "<div class=\"px-6 py-4\">" +
                     "<div class=\"font-bold text-xl mb-2\">"+"Email :"+ value.email +"</div>" +
                     "<p class=\"font-bold text-xl mb-2\">" +
@@ -195,7 +222,7 @@
                 img +=
                     "<main>" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\" style=\"background : #F3F4F6\">" +
                     "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" + value.img +
                     "<div class=\"px-6 py-4\">" +
                     "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
@@ -219,7 +246,7 @@
                 video +=
                     "<main>" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\" style=\"background : #F3F4F6\">" +
                     "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
                     "<div class=\"px-6 py-4\">" +
                     "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
@@ -248,7 +275,7 @@
                 doc +=
                     "<main>" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\">" +
+                    "<div class=\"max-w-sm rounded overflow-hidden shadow-lg\" style=\"background : #F3F4F6\">" +
                     "<img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\">" +
                     "<div class=\"px-6 py-4\">" +
                     "<div class=\"font-bold text-xl mb-2\">The Coldest Sunset</div>" +
@@ -335,7 +362,7 @@
                 </div>
             </div>
         </div>
-        <div id="container" style="display:flex; flex-wrap: wrap; background-color: #F9FAFB;">
+        <div id="container" style="display:flex; background-color: #E5E7EB; flex-wrap: wrap; width: 100%; padding-bottom: 20px; height: 100%;">
 
         </div>
     </div>
