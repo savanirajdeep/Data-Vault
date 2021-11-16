@@ -142,6 +142,18 @@ app.get('/files/:filename', (req, res) => {
 
 // @route GET /image/:filename
 // @desc Display Image
+app.get('/images', (req, res) => {
+  gfs.files.find({ contentType:{ $in: [ "image/jpeg","image/png"] }}).toArray((err, files) => {
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist'
+      });
+    }
+    
+    // Files exist
+    return res.json(files);
+  });
+});
 app.get('/image/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file

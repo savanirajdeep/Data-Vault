@@ -45,7 +45,6 @@ router.get(
         return res.status(400).json({
           message: "Password List Not Exist"
         });
-        console.log(passwordList);
       return res.status(200).send(passwordList);
 
   }
