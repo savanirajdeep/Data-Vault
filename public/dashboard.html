@@ -32,11 +32,6 @@
         let key = prompt('Enter the secret key\nNote: It should be same as secret key in previous screen!');
         let bytes = CryptoJS.AES.decrypt(encryptedToken, key);
         token = bytes.toString(CryptoJS.enc.Utf8);
-        var trueToken=sessionStorage.getItem('true');
-        if(trueToken!=token){
-            alert(trueToken);
-            alert(token);
-        }
         if(!token.toString()){
             key = prompt('Please provide correct secret key');
             token = CryptoJS.AES.decrypt(encryptedToken, key);   

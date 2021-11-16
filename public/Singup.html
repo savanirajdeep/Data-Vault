@@ -33,7 +33,8 @@
           "name":$("#name").val(),
           "email": $("#email").val(),
           "phone": $("#phone").val(),
-          "password": MD5($("#password").val())
+          "password": MD5($("#password").val()),
+          "filename":"."
         };
         $.ajax({
           url: '/user/signup',
