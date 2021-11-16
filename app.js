@@ -80,41 +80,12 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-// @route GET /
-// @desc Loads form
-// app.get('/', (req, res) => {
-//   gfs.files.find().toArray((err, files) => {
-//     // Check if files
-//     if (!files || files.length === 0) {
-//       res.render('index', { files: false });
-//     } else {
-//       files.map(file => {
-//         if (
-//           file.contentType === 'image/jpeg' ||
-//           file.contentType === 'image/png'
-//         ) {
-//           file.isImage = true;
-//         } else {
-//           file.isImage = false;
-//         }
-//       });
-//       res.render('index', { files: files });
-//     }
-//   });
-// });
-
-// @route POST /upload
-// @desc  Uploads file to DB
 app.post('/upload', upload.single('file'), (req, res) => {
    return res.json({ file: req.file });
-  // res.redirect('/');
 });
 
-// @route GET /files
-// @desc  Display all files in JSON
 app.get('/files', (req, res) => {
   gfs.files.find().toArray((err, files) => {
-    // Check if files
     if (!files || files.length === 0) {
       return res.status(404).json({
         err: 'No files exist'
@@ -125,8 +96,6 @@ app.get('/files', (req, res) => {
   });
 });
 
-// @route GET /files/:filename
-// @desc  Display single file object
 app.get('/files/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
@@ -140,8 +109,6 @@ app.get('/files/:filename', (req, res) => {
   });
 });
 
-// @route GET /image/:filename
-// @desc Display Image
 app.get('/images', (req, res) => {
   gfs.files.find({ contentType:{ $in: [ "image/jpeg","image/png"] }}).toArray((err, files) => {
     if (!files || files.length === 0) {
@@ -175,9 +142,6 @@ app.get('/image/:filename', (req, res) => {
     }
   });
 });
-
-// @route DELETE /files/:id
-// @desc  Delete file
 app.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
     if (err) {
