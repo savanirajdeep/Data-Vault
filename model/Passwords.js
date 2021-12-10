@@ -5,15 +5,7 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  website: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  password: {
+  blockchain: {
     type: String,
     required: true
   }
