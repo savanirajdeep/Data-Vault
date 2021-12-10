@@ -124,7 +124,7 @@
             let pass = "";
             $.ajax({
                 url: "/password/getAllPasswords",
-                type: 'GET',
+                type: 'POST',
                 headers: {
                     'token':token.toString()
                 },
@@ -155,16 +155,18 @@
                     "</button>"+
             "</div>"+
         "</div>";
-                    res.forEach((value) => {
+                let blockchain = JSON.parse(res[0].blockchain);
+                    blockchain.forEach((value) => {
+                        if(value.data.website)
                 pass +=
                     "<main>" +
                     "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
                     "<div class=\"max-w-max rounded-lg overflow-hidden shadow-lg\" style=\"background : #F3F4F6\">" +
                     "<div class=\"px-4 py-4\">" +
                     "<div class=\"font-bold text-xl mb-2\">"+
-                        "Website : www."+ value.website +
-                        "<br/>Email : "+ value.email +
-                        "<br/>Password : " + value.password +
+                        "Website : www."+ value.data.website +
+                        "<br/>Email : "+ value.data.email +
+                        "<br/>Password : " + value.data.password +
                     "</div>" +
                     "</div>" +
                     "</div>" +
@@ -174,7 +176,7 @@
                 document.getElementById("container").innerHTML = pass;
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
-                alert(jqXHR.responseText);
+                    alert(jqXHR.responseText);
                 }
             })
             
