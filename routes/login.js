@@ -19,6 +19,7 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log("Errorrrrrrrrrrrr");
       return res.status(400).json({
         errors: errors.array()
       });
@@ -44,7 +45,7 @@ router.post(
 
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
-
+      console.log(user)
       await user.save();
 
       const payload = {

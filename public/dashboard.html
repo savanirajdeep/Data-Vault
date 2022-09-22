@@ -155,24 +155,26 @@
                     "</button>"+
             "</div>"+
         "</div>";
-                let blockchain = JSON.parse(res[0].blockchain);
-                    blockchain.forEach((value) => {
-                        if(value.data.website)
-                pass +=
-                    "<main>" +
-                    "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
-                    "<div class=\"max-w-max rounded-lg overflow-hidden shadow-lg\" style=\"background : #F3F4F6\">" +
-                    "<div class=\"px-4 py-4\">" +
-                    "<div class=\"font-bold text-xl mb-2\">"+
-                        "Website : www."+ value.data.website +
-                        "<br/>Email : "+ value.data.email +
-                        "<br/>Password : " + value.data.password +
-                    "</div>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>" +
-                    "</main>"
-                    })
+                if(res[0]){
+                    let blockchain = JSON.parse(res[0].blockchain);
+                        blockchain.forEach((value) => {
+                            if(value.data.website)
+                    pass +=
+                        "<main>" +
+                        "<div class=\"mx-auto py-0 pt-9 pb-0 sm:px-6 lg:px-8 \">" +
+                        "<div class=\"max-w-max rounded-lg overflow-hidden shadow-lg\" style=\"background : #F3F4F6\">" +
+                        "<div class=\"px-4 py-4\">" +
+                        "<div class=\"font-bold text-xl mb-2\">"+
+                            "Website : www."+ value.data.website +
+                            "<br/>Email : "+ value.data.email +
+                            "<br/>Password : " + value.data.password +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</main>"
+                        })
+                }
                 document.getElementById("container").innerHTML = pass;
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
@@ -246,12 +248,12 @@
     <div style="display: flex; flex-direction: row;">
 
         <div id="Main"
-            class="xl:rounded-r transform  xl:translate-x-0 flex items-start h-full   w-full sm:w-64 flex-col" style="background-color: #4B5563;"> 
-            <img class="rounded-full center pt-20  pl-5 w-4/5 h-4/5" id="myphoto" src="https://i.ibb.co/L1LQtBm/Ellipse-1.png"
-                alt="avatar" />
+            class="xl:rounded-r transform  xl:translate-x-0 flex items-start h-full   w-full sm:w-64 flex-col" style="background-color: #4B5563; height:max-content;"> 
+            <!-- <img class="rounded-full center pt-20  pl-5 w-4/5 h-4/5" id="myphoto" src="https://i.ibb.co/L1LQtBm/Ellipse-1.png"
+                alt="avatar" /> -->
 
             <div  class="flex justify-center items-center pt-6 space-x-2">
-                <p class="text-lg leading-5 text-white" style="padding-left: 10px;" id="myname">Alexis Enache</p>
+                <p class="text-lg leading-5 text-white" style="padding-left: 10px;" id="myname"></p>
 
             </div>
             <div class="flex flex-col justify-start items-center px-6 border-b border-gray-600 w-full ">

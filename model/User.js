@@ -19,7 +19,7 @@ const UserSchema = mongoose.Schema({
   },
   filename: {
     type: String,
-    required: true
+    required: false
   },
   createdAt: {
     type: Date,

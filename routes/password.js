@@ -17,21 +17,22 @@ async function storeInDb(userId, chain,res) {
     console.log('saved ' + doc)
     res.send( { message: "ok" })
   })
-  res.send( { message: "error" })
+  // res.send( { message: "error" })
 }
 async function updateInDb(id, userId, chain,res) {
   let password = {
     userId: userId,
     blockchain: JSON.stringify(chain)
   }
-  console.log(password)
   await Password.findOneAndUpdate({
     _id
       : id
   }, password).then(doc =>{
+    console.log("doneeee")
     res.send( { message: "ok" })
   })
-  res.send( { message: "error" })
+  // console.log("lollll")
+  // res.send( { message: "error" })
 }
 router.post(
   "/store", auth,
